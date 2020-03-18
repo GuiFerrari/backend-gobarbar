@@ -128,6 +128,12 @@ class AppointmentController {
       ],
     });
 
+    if (appointment !== null) {
+      return res.status(400).json({
+        error: 'This appointment already cancelled',
+      });
+    }
+
     if (appointment.user_id !== req.userId) {
       return res.status(401).json({
         error: "You don't have permission to cancel this appointment",
